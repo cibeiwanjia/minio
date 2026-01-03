@@ -10,10 +10,10 @@ import (
 	"github.com/minio/minio-go/v7/pkg/credentials"
 )
 
-func MinioUpload() string {
-	endpoint := "127.0.0.1:9001"
-	accessKeyID := "minioadmin"
-	secretAccessKey := "minioadmin"
+func MinioUpload(endPoint, accessID, secretID, bucket, object, file string) string {
+	endpoint := endPoint
+	accessKeyID := accessID
+	secretAccessKey := secretID
 	useSSL := false
 
 	minioClient, err := minio.New(endpoint, &minio.Options{
@@ -24,9 +24,9 @@ func MinioUpload() string {
 		log.Fatalln(err)
 	}
 
-	filePath := "/Users/wyh/Macwork/mixed/1.png"
-	bucketName := "alton"
-	objectName := "c.png"
+	filePath := file
+	bucketName := bucket
+	objectName := object
 
 	ctx := context.Background()
 	exists, errBucketExists := minioClient.BucketExists(ctx, bucketName)
