@@ -4,13 +4,14 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"net/url"
 	"time"
 
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/credentials"
 )
 
-func MinioUpload(endPoint, accessID, secretID, bucket, object, file string) string {
+func MinioUpload(endPoint, accessID, secretID, bucket, object, file string) *url.URL {
 	endpoint := endPoint
 	accessKeyID := accessID
 	secretAccessKey := secretID
